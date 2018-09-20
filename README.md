@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-npm i execa-ipfs
+npm i start-go-ipfs
 ```
 
 ## Usage
@@ -21,8 +21,8 @@ const daemon = await startDaemon({
   execPath: '/usr/local/bin/ipfs',
   // Path to your IPFS repo (default shown)
   ipfsPath: '~/.ipfs',
-  // Config to merge with your current config at ~/.ipfs/config
-  config: {/* IPFS config */},
+  // Config to merge with your current config at ~/.ipfs/config (optional)
+  config: { /* IPFS config */ },
   // Options for deepmerge (defaults shown)
   // see https://www.npmjs.com/package/deepmerge#arraymerge
   mergeOptions: {
@@ -44,3 +44,11 @@ console.log(daemon.config)
 // https://www.npmjs.com/package/execa
 await daemon.process
 ```
+
+## Contribute
+
+Feel free to dive in! [Open an issue](https://github.com/alanshaw/start-go-ipfs/issues/new) or submit PRs.
+
+## License
+
+[MIT](LICENSE) © Alan Shaw
