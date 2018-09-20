@@ -1,0 +1,35 @@
+{
+  "name": "start-go-ipfs",
+  "version": "0.0.0",
+  "description": "Start a go-ipfs daemon from Node.js",
+  "main": "src/index.js",
+  "dependencies": {
+    "deepmerge": "^2.1.1",
+    "execa": "^1.0.0",
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "go-ipfs-dep": "^0.4.17"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alan Shaw",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanshaw/start-go-ipfs.git"
+  },
+  "keywords": [
+    "ipfs",
+    "daemon",
+    "child",
+    "process",
+    "spawn",
+    "start"
+  ],
+  "bugs": {
+    "url": "https://github.com/alanshaw/start-go-ipfs/issues"
+  },
+  "homepage": "https://github.com/alanshaw/start-go-ipfs#readme"
+}
