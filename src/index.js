@@ -1,7 +1,7 @@
 const execa = require('execa')
 const Path = require('path')
 const Fs = require('fs')
-const { readFile, access } = Fs.promises
+const { readFile, writeFile, access } = Fs.promises
 const Os = require('os')
 const { promisify } = require('util')
 const mkdirp = promisify(require('mkdirp'))
@@ -77,7 +77,7 @@ async function updateConfig (configPath, newConfig, options) {
   const prevConfig = await readConfig(configPath)
   const mergeOptions = options.mergeOptions || defaultMergeOptions
   const nextConfig = merge(prevConfig, newConfig, mergeOptions)
-  await Fs.writeFile(configPath, JSON.stringify(nextConfig, null, 2))
+  await writeFile(configPath, JSON.stringify(nextConfig, null, 2))
   return nextConfig
 }
 

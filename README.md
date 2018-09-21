@@ -1,11 +1,11 @@
-# start-go-ipfs
+# start-ipfs-daemon
 
-> Spawn a go-ipfs daemon from Node.js
+> Spawn an IPFS daemon from Node.js
 
 ## Install
 
 ```sh
-npm i start-go-ipfs
+npm i start-ipfs-daemon
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm i start-go-ipfs
 First install your favourite go-ipfs daemon, you could `npm install go-ipfs-dep`, `brew install ipfs` or whatever.
 
 ```js
-const startDaemon = require('start-go-ipfs')
+const startDaemon = require('start-ipfs-daemon')
 
 const daemon = await startDaemon({
   // The path to your IPFS executable.
