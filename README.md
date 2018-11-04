@@ -17,7 +17,10 @@ const startDaemon = require('start-ipfs-daemon')
 
 const daemon = await startDaemon({
   // The path to your IPFS executable.
-  // default: node_modules/go-ipfs-dep/go-ipfs/ipfs (required if go-ipfs-dep not installed)
+  // default:
+  //   node_modules/go-ipfs-dep/go-ipfs/ipfs (preferred)
+  //   node_modules/ipfs/src/cli/bin.js
+  // (required if neither of ipfs/go-ipfs-dep installed)
   execPath: '/usr/local/bin/ipfs',
   // Path to your IPFS repo (default shown)
   ipfsPath: '~/.ipfs',

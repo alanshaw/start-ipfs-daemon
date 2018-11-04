@@ -7,7 +7,23 @@ const { promisify } = require('util')
 const mkdirp = promisify(require('mkdirp'))
 const merge = require('deepmerge')
 
-const defaultExecPath = getDefaultExecPath()
+const installedExecPaths = Object.freeze({
+  ipfs: (() => {
+    try {
+      // require.resolve('ipfs') = node_modules/ipfs/src/core/index.js
+      const path = Path.dirname(require.resolve('ipfs'))
+      return Path.resolve(path, '..', 'cli', 'bin.js')
+    } catch (err) {}
+  })(),
+  'go-ipfs-dep': (() => {
+    try {
+      const path = Path.dirname(Path.dirname(require.resolve('go-ipfs-dep')))
+      return Path.resolve(path, 'go-ipfs', 'ipfs')
+    } catch (err) {}
+  })()
+})
+
+const defaultExecPath = installedExecPaths['go-ipfs-dep'] || installedExecPaths['ipfs']
 const defaultIpfsPath = Path.join(Os.homedir(), '.ipfs')
 
 module.exports = async options => {
@@ -19,7 +35,7 @@ module.exports = async options => {
   const stderr = options.stderr
 
   if (!execPath) {
-    throw new Error('go-ipfs-dep not found and no executable path provided')
+    throw new Error('go-ipfs-dep/ipfs not found and no executable path provided')
   }
 
   if (!(await exists(ipfsPath))) {
@@ -40,17 +56,7 @@ module.exports = async options => {
   return { process: proc, config }
 }
 
-function getDefaultExecPath () {
-  let goIpfsModulePath
-
-  try {
-    goIpfsModulePath = Path.dirname(Path.dirname(require.resolve('go-ipfs-dep')))
-  } catch (err) {
-    return null
-  }
-
-  return Path.resolve(goIpfsModulePath, 'go-ipfs', 'ipfs')
-}
+module.exports.installedExecPaths = installedExecPaths
 
 async function exists (path) {
   try {
