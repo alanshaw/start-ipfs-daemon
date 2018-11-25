@@ -93,7 +93,8 @@ async function readConfig (path) {
 
 function execDaemon (execPath, ipfsPath, options) {
   options = options || {}
-  const proc = execa(execPath, ['daemon'], { env: { IPFS_PATH: ipfsPath } })
+  const args = ['daemon'].concat(options.args || [])
+  const proc = execa(execPath, args, { env: { IPFS_PATH: ipfsPath } })
   if (options.stdout) proc.stdout.pipe(options.stdout)
   if (options.stderr) proc.stderr.pipe(options.stderr)
   return proc

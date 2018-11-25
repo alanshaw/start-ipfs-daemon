@@ -23,9 +23,12 @@ const daemon = await startDaemon({
   // (required if neither of ipfs/go-ipfs-dep installed)
   execPath: '/usr/local/bin/ipfs',
   // Path to your IPFS repo (default shown)
+  // Created if not exists
   ipfsPath: '~/.ipfs',
   // Config to merge with your current config at ~/.ipfs/config (optional)
   config: { /* IPFS config */ },
+  // Additional CLI arguments to pass to the `ipfs daemon` command
+  args: ['--enable-pubsub-experiment']
   // Options for deepmerge (defaults shown)
   // see https://www.npmjs.com/package/deepmerge#arraymerge
   mergeOptions: {
@@ -40,6 +43,10 @@ const daemon = await startDaemon({
 
 // Your daemon configuration
 console.log(daemon.config)
+
+// Maybe you wanna talk to it over the HTTP API?
+const IpfsApi = require('ipfs-api')
+const ipfs = IpfsApi(daemon.config.Addresses.API)
 
 // Node.js child process
 // https://nodejs.org/api/child_process.html#child_process_class_childprocess
