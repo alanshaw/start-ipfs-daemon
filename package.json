@@ -1,6 +1,6 @@
 {
   "name": "start-ipfs-daemon",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Start an IPFS daemon from Node.js",
   "main": "src/index.js",
   "dependencies": {
