@@ -51,7 +51,7 @@ module.exports = async options => {
     config = await readConfig(configPath)
   }
 
-  const proc = execDaemon(execPath, ipfsPath, { stdout, stderr })
+  const proc = execDaemon(execPath, ipfsPath, { args: options.args, stdout, stderr })
   await daemonReady(proc)
   return { process: proc, config }
 }
